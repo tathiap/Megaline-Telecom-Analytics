@@ -1,6 +1,8 @@
 # Predicting User Subscription Behavior — Megaline Plan Analysis & Machine Learning Classification
 
-## Overview: This repository contains two interconnected data analysis and machine learning projects based on subscriber behavior data from a fictional telecom company, Megaline. The first project focuses on exploratory data analysis (EDA), A/B testing, and revenue forecasting. The second project applies machine learning classification models to predict whether a user is likely to subscribe to the premium "Ultra" plan.
+## Overview: 
+
+This repository contains two interconnected data analysis and machine learning projects based on subscriber behavior data from a fictional telecom company, Megaline. The first project focuses on exploratory data analysis (EDA), A/B testing, and revenue forecasting. The second project applies machine learning classification models to predict whether a user is likely to subscribe to the premium "Ultra" plan.
 
 ### Project 1: Megaline Revenue Plan Analysis
 
