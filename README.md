@@ -92,32 +92,32 @@ python "Py Scripts/Predict Ultra Plan.py"
 ### What each component does
 
 load_megaline_data.py (optional)
-Loads dataset/megaline_*.csv into megaline2.db (SQLite). Safe to re-run.
+   * Loads dataset/megaline_*.csv into megaline2.db (SQLite). Safe to re-run.
 
 megaline_ml_pipeline.py
-Parses dates → month (YYYY-MM), aggregates calls/messages/internet by user-month, joins plan economics, computes monthly_revenue (base fee + overage), and saves:
-
-   * dataset/processed/features_user_month.csv|.parquet
+   * Parses dates → month (YYYY-MM), aggregates calls/messages/internet by user-month
+   * Joins plan economics, computes monthly_revenue (base fee + overage).
+   * Saves: dataset/processed/features_user_month.csv|.parquet
 
 Predict Ultra Plan.py
-Loads ML data, creates stratified 60/20/20 train/val/test, scales only models that need it (LR/SVM), tunes on validation F1 (Ultra=1) via GridSearchCV, evaluates on test, prints reports and plots (prediction histograms, confusion matrices, feature importance, ROC).
+   * Loads ML data, creates stratified 60/20/20 train/val/test
+   * Scales only models that need it (LR/SVM), tunes on validation F1 (Ultra=1) via GridSearchCV.
+   * Evaluates on test, prints reports and plots (prediction histograms, confusion matrices, feature importance,    ROC).
 
 Notebook/Prepare_ML_Data.ipynb
-Minimal cleaning & feature creation for users_behavior.csv, plus stratified splits (optional artifacts in dataset/processed/).
+   *Minimal cleaning & feature creation for users_behavior.csv, plus stratified splits (optional artifacts in           dataset/processed/).
 
 ---
 ### Results (from latest run)
 
 Model selection (validation F1 on Ultra):
-
    * Random Forest 0.64 (best)
    * Gradient Boosting 0.63
    * Decision Tree 0.58
    * Logistic Regression 0.51
    * SVM 0.49
 
-Final test (Random Forest):
-
+Final test (Random Forest):\
    * Accuracy: 0.80 (643 rows)
    * Ultra (class=1): Precision 0.73, Recall 0.56, F1 0.63
    * Confusion matrix (Test):
