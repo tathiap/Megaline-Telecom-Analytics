@@ -1,0 +1,19 @@
+# Core data & ML stack
+pandas
+numpy
+scikit-learn
+scipy
+
+# Viz
+matplotlib
+seaborn
+
+# Notebooks
+jupyter
+ipykernel
+
+# File formats (parquet)
+pyarrow
+
+# (Optional) Only if you still use MySQL anywhere
+# mysql-connector-python
