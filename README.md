@@ -16,6 +16,7 @@ What's inside
 
 ### Repo Structure 
 
+
 .
 ├─ dataset/
 │  ├─ users_behavior.csv                # base ML dataset (minutes, messages, mb_used, is_ultra)
@@ -35,9 +36,52 @@ What's inside
 │  └─ Predict Ultra Plan.py             # trains & evaluates models
 └─ sql/
    └─ megaline_analysis_views.sql       # optional reusable CREATE VIEWs (SQLite-style)
+
    
 ---
 
 ### Quick Start 
 
-*** 1. Environment 
+#### 1.Environment 
+
+python -m venv .venv
+# mac/linux
+source .venv/bin/activate
+# windows (powershell)
+.\.venv\Scripts\Activate.ps1
+
+pip install -U pip
+pip install -r requirements.txt
+
+#### Requirements.txt
+
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+scipy
+jupyter
+
+#### 2.Inputs 
+Place CSVs in dataset/:
+
+   * Required (for ML): users_behavior.csv
+     Columns: minutes, messages, mb_used, is_ultra
+
+   * Optional (for pipeline/EDA):
+     megaline_calls.csv, megaline_internet.csv, megaline_messages.csv, megaline_users.csv, megaline_plans.csv
+
+#### 3. Run from the command line 
+
+# Build SQLite tables from CSVs
+python "Py. Scripts/load_megaline_data.py"
+
+# Build monthly usage features + revenue and save to dataset/processed/
+python "Py. Scripts/megaline_ml_pipeline.py"
+
+# Train & evaluate classification models for Ultra subscription
+python "Py. Scripts/Predict Ultra Plan.py"
+
+---
+
