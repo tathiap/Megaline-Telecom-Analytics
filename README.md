@@ -14,7 +14,7 @@ This repo combines SQL/Python revenue analysis, A/B testing, and ML classificati
 
 --- 
 ### Repo Structure 
-
+```text
 .
 ├─ dataset/
 │  ├─ users_behavior.csv                 # base ML dataset (minutes, messages, mb_used, is_ultra)
@@ -34,7 +34,7 @@ This repo combines SQL/Python revenue analysis, A/B testing, and ML classificati
 │  └─ Predict Ultra Plan.py              # trains & evaluates models
 └─ sql/
    └─ megaline_analysis_views.sql        # optional reusable CREATE VIEWs (SQLite-style)
-
+```
    
 ---
 
@@ -42,17 +42,22 @@ This repo combines SQL/Python revenue analysis, A/B testing, and ML classificati
 
 ***1.Environment*** 
 
-python -m venv .venv
-# mac/linux
-source .venv/bin/activate
-# windows (powershell)
-.\.venv\Scripts\Activate.ps1
+mac/linux
+``` text
+python -m venv .venv && source .venv/bin/activate
+pip install -U pip && pip install -r requirements.txt
+```
 
+Windows (PowerShell)
+``` text
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 pip install -U pip
 pip install -r requirements.txt
+```
 
-****Requirements.txt**** 
-
+Requirements.txt
+```text
 pandas
 numpy
 scikit-learn
@@ -60,18 +65,29 @@ matplotlib
 seaborn
 scipy
 jupyter
+```
 
 ***2.Inputs***
 Place CSVs in dataset/:
-
    * Required (for ML): users_behavior.csv
      Columns: minutes, messages, mb_used, is_ultra
-
    * Optional (for pipeline/EDA):
      megaline_calls.csv, megaline_internet.csv, megaline_messages.csv, megaline_users.csv, megaline_plans.csv
+     
+***3. Run***
 
+From repo root (CLI):
 
+```text
+# (optional) Build SQLite tables from CSVs
+python "Py Scripts/load_megaline_data.py"
 
+# Build monthly features + revenue → dataset/processed/
+python "Py Scripts/megaline_ml_pipeline.py"
+
+# Train & evaluate classification models
+python "Py Scripts/Predict Ultra Plan.py"
+```
 ---
 ### What each component does
 
@@ -121,20 +137,21 @@ Revenue & A/B testing (typical outcomes):
 
 * Path not found / FileNotFoundError
   Scripts use:
-
+``` text
   from pathlib import Path
   HERE = Path(__file__).resolve() if "__file__" in globals() else Path.cwd()
   PROJECT_ROOT = HERE.parents[1]
   DATA_DIR = PROJECT_ROOT / "dataset"
   PROC_DIR = DATA_DIR / "processed"
   DB_PATH  = PROJECT_ROOT / "megaline2.db"
-
+```
 Ensure there is one megaline2.db at the repo root and the folder name is dataset/ (singular).
 
 * Headless plotting (servers/CI):
-
+```text
   import matplotlib
   matplotlib.use("Agg")
+```
 ---
 ### Roadmap
 * Probability threshold tuning (maximize recall for Ultra with minimal precision drop)
