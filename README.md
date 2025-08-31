@@ -105,7 +105,7 @@ Predict Ultra Plan.py
    * Evaluates on test, prints reports and plots (prediction histograms, confusion matrices, feature importance,    ROC).
 
 Notebook/Prepare_ML_Data.ipynb
-   *Minimal cleaning & feature creation for users_behavior.csv, plus stratified splits (optional artifacts in           dataset/processed/).
+   * Minimal cleaning & feature creation for users_behavior.csv, plus stratified splits (optional artifacts in         dataset/processed/).
 
 ---
 ### Results (from latest run)
