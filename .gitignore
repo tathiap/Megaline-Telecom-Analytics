@@ -158,3 +158,29 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# --- Megaline repo additions ---
+
+# OS cruft
+.DS_Store
+Thumbs.db
+__MACOSX/
+
+# Editors/IDEs
+.vscode/
+.idea/
+
+# SQLite sidecar files (keep megaline2.db tracked)
+*.db-wal
+*.db-shm
+*.db-journal
+
+# Optional: logs & env
+logs/
+*.log
+.env
+*.env
+
+# Optional: keep repo small by ignoring processed outputs
+# dataset/processed/*
+# !dataset/processed/features_user_month.csv
